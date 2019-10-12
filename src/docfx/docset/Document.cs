@@ -142,7 +142,7 @@ namespace Microsoft.Docs.Build
             Debug.Assert(!SiteUrl.EndsWith('/') || Path.GetFileNameWithoutExtension(SitePath) == "index");
         }
 
-        public string GetOutputPath(List<string> monikers, string siteBasePath, bool isPage = true)
+        public string GetOutputPath(IReadOnlyList<string> monikers, string siteBasePath, bool isPage = true)
         {
             var outputPath = PathUtility.NormalizeFile(Path.Combine(
                 siteBasePath,
@@ -425,7 +425,7 @@ namespace Microsoft.Docs.Build
             if (filePath.Path.EndsWith(".json", PathUtility.PathComparison))
             {
                 // TODO: we could have not depend on this exists check, but currently
-                //       DependencyResolver works with Document and return a Document for token files,
+                //       LinkResolver works with Document and return a Document for token files,
                 //       thus we are forced to get the mime type of a token file here even if it's not useful.
                 //
                 //       After token resolve does not create Document, this Exists check can be removed.
